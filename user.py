@@ -1,12 +1,10 @@
 from tabulate import tabulate
-
 from abc import ABC, abstractmethod
 
 from database import Database
 from config import DB_CONFIG
 
 db = Database(**DB_CONFIG)
-
 
 class User(ABC):
     currentUser = None
@@ -29,8 +27,6 @@ class User(ABC):
     @abstractmethod
     def displayInformation():
         pass
-
-
 
 
 class Driver(User):
@@ -137,6 +133,7 @@ class Driver(User):
         db.execute_query("UPDATE Driver SET fareRate = ? WHERE driverID = ?", (fareRate, driverID))
         db.close()
 
+
 class Passenger(User):
 
     def __init__(self, id, username, password, fullName, birthDate, address, sex, email, contact):
@@ -162,12 +159,6 @@ class Passenger(User):
         rowAffected = db.execute_query("INSERT INTO Passenger (username, password, fullName, birthDate, address, sex, email, contact) VALUES (?,?,?,?,?,?,?,?)", (username, password, fullName, birthDate, address, sex, email, contact))
         return True if rowAffected else False
 
-        
-
-
-# Passenger.validatePassenger("idol", "idol")
-# Passenger.changeUser()
-# print(User.currentUser)
 
 
 

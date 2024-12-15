@@ -64,7 +64,6 @@ class Database:
             cursor.close()
 
 
-
     def close(self):
         """Close the database connection."""
         if self.connection:

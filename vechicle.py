@@ -3,7 +3,6 @@ from config import DB_CONFIG
 
 db = Database(**DB_CONFIG)
 
-
 class Vehicle:
     
     def __init__(self, driverID, vehicleType, brand, model):
@@ -20,4 +19,3 @@ class Vehicle:
     def registerToDB(self):
         db.execute_query("INSERT INTO Vehicle (driverID, vehicleType, brand, model) VALUES (?,?,?,?)", (self.driverID, self.vehicleType, self.brand, self.model))
         db.close()
-        

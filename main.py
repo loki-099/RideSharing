@@ -66,7 +66,6 @@ def bookATripPage():
     Trip.displayFromLocations()
     print("\n0 - Go Back")
     index = int(input("Enter Location Number: ")) - 1
-
     if index == -1:
         clear()
         passengerPage()
@@ -77,7 +76,6 @@ def bookATripPage():
         Trip.displayToLocations(fromLocation)
         print("\n0 - Cancel")
         index = int(input("Enter Location Number: ")) - 1
-
         if index == -1:
             clear()
             passengerPage()
@@ -92,7 +90,6 @@ def bookedTripPage():
     print("BOOKED TRIP:")
     Payment.displayPassengerBookedTrip(User.currentUser.id)
     choice = input("1 - Cancel a Trip\n0 - Back\n\nEnter choice: ")
-
     if choice == "1":
         bookID = int(input("Enter Booked Trip ID: "))
         Payment.cancelBookedTrip(bookID)
@@ -114,26 +111,21 @@ def transactionPage():
 def passengerPage():
     print(f"Welcome, {User.currentUser.fullName}") 
     choice = input("1 - Book a Trip\n2 - See Booked Trip\n3 - See Transaction History\n4 - View Account Information\n0 - Log Out \n\nEnter your choice: ")
-    
     if choice == "1":
         clear()
         bookATripPage()
-
     elif choice == "2":
         clear()
         bookedTripPage()
-
     elif choice == "3":
         clear()
         transactionPage()
-
     elif choice == "4":
         clear()
         Passenger.displayInformation()
         input("\nEnter any key to back: ")
         clear()
         passengerPage()
-
     elif choice == "0":
         clear()
         main()
@@ -145,7 +137,6 @@ def bookingsPage():
     print("BOOKINGS:")
     Driver.displayBookings(User.currentUser.id)
     choice = input("\n1 - Mark as Done\n2 - Accept\n3 - Decline\n0 - Back\n\nEnter choice: ")
-
     if choice == "1":
         bookID = input("Enter Booking ID: ")
         Driver.updateBooking(bookID, User.currentUser.id)
@@ -154,7 +145,6 @@ def bookingsPage():
         input("Enter any key to back: ")
         clear()
         bookingsPage()
-
     elif choice == "2":
         bookID = input("Enter Booking ID: ")
         Driver.acceptBooking(bookID, User.currentUser.id)
@@ -163,7 +153,6 @@ def bookingsPage():
         input("Enter any key to back: ")
         clear()
         bookingsPage()
-
     elif choice == "3":
         bookID = input("Enter Booking ID: ")
         Driver.cancelBooking(bookID)
@@ -172,7 +161,6 @@ def bookingsPage():
         input("Enter any key to back: ")
         clear()
         bookingsPage()
-
     else:
         clear()
         driverPage()
@@ -208,26 +196,21 @@ def driverPage():
     if not Vehicle.checkDriver(User.currentUser.id):
         print("4 - REGISTER A VEHICLE FIRST!")
     choice = input("0 - Log Out \n\nEnter your choice: ")
-    
     if choice == "1":
         clear()
         bookingsPage()
-
     elif choice == "2":
         clear()
         driverTransactionPage()
-
     elif choice == "3":
         clear()
         Driver.displayInformation()
         input("\nEnter any key to back: ")
         clear()
         driverPage()
-
     elif choice == "4":
         clear()
         registerVehicle(User.currentUser.id)
-
     elif choice == "0":
         clear()
         main()
@@ -238,14 +221,12 @@ def main():
     # clear()
     print("RIDE SHARING APP")
     choice = input("1 - Passenger LogIn\n2 - Driver LogIn\n3 - Passenger Register\n4 - Driver Register\n\nEnter your choice: ")
-
     if choice == "1":
         clear()
         print("PASSENGER LOGIN")
         username = input("Enter username: ")
         password = input("Enter password: ")
         isValidated = Passenger.validatePassenger(username, password) 
-        
         if (isValidated):
             Passenger.changeUser(username, password)
             clear()
@@ -254,14 +235,12 @@ def main():
             clear()
             print("NO USER FOUND")
             main()
-
     elif choice == "2":
         clear()
         print("DRIVER LOGIN")
         username = input("Enter username: ")
         password = input("Enter password: ")
         isValidated = Driver.validateDriver(username, password) 
-        
         if (isValidated):
             Driver.changeUser(username, password)
             clear()
@@ -270,7 +249,6 @@ def main():
             clear()
             print("NO USER FOUND")
             main()
-
     elif choice == "3":
         clear()
         print("PASSENGER REGISTER: ")
@@ -286,7 +264,6 @@ def main():
                 break
             print("Invalid Email Format. Try again!")
         contact = input("Enter Contact Number: ")
-
         if Passenger.registerToDB(username, password, fullName, birthDate, address, sex, email, contact):
             clear()
             print("SUCCESSFULLY REGISTERED!")
@@ -295,7 +272,6 @@ def main():
             clear()
             print("NOT REGISTERED!")
             main()
-
     elif choice == "4":
         clear()
         print("DRIVER REGISTER: ")
@@ -319,6 +295,6 @@ def main():
             clear()
             print("NOT REGISTERED!")
             main()
-
+            
 
 main()

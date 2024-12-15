@@ -5,7 +5,6 @@ from config import DB_CONFIG
 
 db = Database(**DB_CONFIG)
 
-
 class Route:
     routes = []
     
